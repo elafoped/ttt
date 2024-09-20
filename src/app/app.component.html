@@ -1,0 +1,74 @@
+<header class="header">
+    <h1>نظام إدارة الموظفين</h1>
+</header>
+
+<div class="layout">
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#">إدارة الموظفين</a></li>
+            <li><a href="#">إدارة الأقسام</a></li>
+            <li><a href="#">التقارير</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="employee-management">
+            <h1 class="page-title">إدارة الموظفين</h1>
+
+            <!-- Form to Add New Employee -->
+            <div class="add-employee-form">
+                <h2>إضافة موظف جديد</h2>
+                <form (submit)="addEmployee()">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل:</label>
+                        <input type="text" id="name" [(ngModel)]="newEmployee.name" name="name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="position">الوظيفة:</label>
+                        <input type="text" id="position" [(ngModel)]="newEmployee.position" name="position" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="department">القسم:</label>
+                        <input type="text" id="department" [(ngModel)]="newEmployee.department" name="department" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني:</label>
+                        <input type="email" id="email" [(ngModel)]="newEmployee.email" name="email" required />
+                    </div>
+                    <button type="submit" class="btn btn-add">إضافة الموظف</button>
+                </form>
+            </div>
+
+            <!-- Employee List -->
+            <div class="employee-list">
+                <h2>قائمة الموظفين</h2>
+                <table class="employee-table">
+                    <thead>
+                        <tr>
+                            <th>الرقم</th>
+                            <th>الاسم</th>
+                            <th>الوظيفة</th>
+                            <th>القسم</th>
+                            <th>البريد الإلكتروني</th>
+                            <th>التحكم</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let employee of employees; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ employee.name }}</td>
+                            <td>{{ employee.position }}</td>
+                            <td>{{ employee.department }}</td>
+                            <td>{{ employee.email }}</td>
+                            <td>
+                                <button (click)="editEmployee(employee, i)" class="btn btn-edit">تعديل</button>
+                                <button (click)="deleteEmployee(i)" class="btn btn-delete">حذف</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
